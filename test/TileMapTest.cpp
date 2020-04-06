@@ -1,13 +1,17 @@
 #include "pch.h"
-#include "../include/TiledParser/TiledMap.h"
+#include "../include/TiledParser/TileMap.h"
+#include <string>
+
+using namespace TiledParser;
 
 namespace {
 
 	class TileMapTest : public ::testing::Test {};
 
-	TEST(TestCaseName, TestName) {
-		EXPECT_EQ(TiledParser::TiledMap::Sum(1, 2), 3);
-		EXPECT_TRUE(true);
+	TEST(TileMapTest, CompressionLevel) {
+		TileMap map("Resources/empty_map.json");
+
+		EXPECT_EQ(map.getCompressionLevel(), -1);
 	}
 
 }

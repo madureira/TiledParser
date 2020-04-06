@@ -4,7 +4,7 @@
 
 namespace TiledParser {
 
-	class TiledMap final
+	class TileMap final
 	{
 	private:
 		std::string m_FilePath;
@@ -12,15 +12,10 @@ namespace TiledParser {
 		int m_CompressionLevel;
 
 	public:
-		TiledMap(std::string filePath);
+		TileMap(std::string filePath);
 
 		const std::string& getBackgroundColor() const;
 		const int& getCompressionLevel() const;
-
-		static int Sum(int a, int b)
-		{
-			return a + b;
-		}
 	};
 
 }

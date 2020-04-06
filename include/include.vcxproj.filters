@@ -15,7 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TiledParser\TiledMap.h">
+    <ClCompile Include="TiledParser\TileMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TiledParser\TileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
