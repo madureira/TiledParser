@@ -162,9 +162,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="TiledParser\Layer.cpp" />
     <ClCompile Include="TiledParser\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TiledParser\Layer.h" />
     <ClInclude Include="TiledParser\TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

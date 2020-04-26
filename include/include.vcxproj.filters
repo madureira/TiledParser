@@ -18,9 +18,15 @@
     <ClCompile Include="TiledParser\TileMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TiledParser\Layer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TiledParser\TileMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledParser\Layer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
