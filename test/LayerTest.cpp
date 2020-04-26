@@ -2,6 +2,7 @@
 #include "../include/TiledParser/TileMap.h"
 #include "../include/TiledParser/Layer.h"
 #include <string>
+#include <vector>
 
 using namespace TiledParser;
 
@@ -86,6 +87,15 @@ namespace {
 		Layer firstLayer = map.GetLayers().at(0);
 
 		EXPECT_EQ(firstLayer.GetY(), 0);
+	}
+
+	TEST(LayerTest, Data)
+	{
+		Layer firstLayer = map.GetLayers().at(0);
+
+		std::vector<int32_t> tileIds = firstLayer.GetTileIds();
+
+		EXPECT_EQ(tileIds.size(), 0);
 	}
 
 }

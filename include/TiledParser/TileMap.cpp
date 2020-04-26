@@ -1,4 +1,5 @@
 #include "TileMap.h"
+#include "Base64.h"
 #include <fstream>
 #include <filesystem>
 #include <nlohmann/json.hpp>
@@ -21,6 +22,7 @@ namespace TiledParser {
 			if (!this->Parse(jsonStr))
 			{
 				std::cout << "ERROR: Failed to parse file " << filePath << std::endl;
+				perror(filePath.c_str());
 			}
 		}
 		else {
@@ -119,6 +121,30 @@ namespace TiledParser {
 
 		for (const auto& jsonLayer : json["layers"])
 		{
+			std::string data = jsonLayer["data"].get<std::string>();
+			std::string decodedData;
+
+			std::string errorMessage = Base64::Decode(data, decodedData);
+
+			if (!errorMessage.empty())
+			{
+				std::cout << "ERROR: Failed to decode base64 attribute data" << std::endl;
+				return false;
+			}
+
+			std::vector<int> tileIds;
+			int dataSize = decodedData.size();
+			int tileIndex = 0;
+
+			while (tileIndex < dataSize)
+			{
+				if (decodedData[tileIndex])
+				{
+					tileIds.push_back((int32_t)decodedData[tileIndex]);
+				}
+				tileIndex += 4;
+			}
+
 			Layer layer(
 				jsonLayer["id"].get<int>(),
 				jsonLayer["name"].get<std::string>(),
@@ -130,7 +156,8 @@ namespace TiledParser {
 				jsonLayer["opacity"].get<float>(),
 				jsonLayer["visible"].get<bool>(),
 				jsonLayer["x"].get<int>(),
-				jsonLayer["y"].get<int>()
+				jsonLayer["y"].get<int>(),
+				tileIds
 			);
 
 			this->m_Layers.push_back(layer);

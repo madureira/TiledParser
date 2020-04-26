@@ -52,6 +52,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Base64Test.cpp" />
     <ClCompile Include="LayerTest.cpp" />
     <ClCompile Include="TileMapTest.cpp" />
     <ClCompile Include="pch.cpp">

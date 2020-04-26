@@ -166,6 +166,7 @@
     <ClCompile Include="TiledParser\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TiledParser\Base64.h" />
     <ClInclude Include="TiledParser\Layer.h" />
     <ClInclude Include="TiledParser\TileMap.h" />
   </ItemGroup>

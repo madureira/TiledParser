@@ -14,7 +14,8 @@ namespace TiledParser {
 		float opacity,
 		bool visible,
 		int x,
-		int y
+		int y,
+		std::vector<int> tileIds
 	)
 		: m_Id(id)
 		, m_Name(name)
@@ -27,6 +28,7 @@ namespace TiledParser {
 		, m_Visible(visible)
 		, m_X(x)
 		, m_Y(y)
+		, m_TileIds(tileIds)
 	{
 	}
 
@@ -70,7 +72,7 @@ namespace TiledParser {
 		return this->m_Opacity;
 	}
 
-	const bool Layer::IsVisible() const
+	const bool& Layer::IsVisible() const
 	{
 		return this->m_Visible;
 	}
@@ -83,6 +85,11 @@ namespace TiledParser {
 	const int& Layer::GetY() const
 	{
 		return this->m_Y;
+	}
+
+	const std::vector<int> Layer::GetTileIds() const
+	{
+		return this->m_TileIds;
 	}
 
 }

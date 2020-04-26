@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace TiledParser {
 
@@ -18,6 +19,7 @@ namespace TiledParser {
 		bool m_Visible;
 		int m_X;
 		int m_Y;
+		std::vector<int> m_TileIds;
 
 	public:
 		Layer(
@@ -31,7 +33,8 @@ namespace TiledParser {
 			float opacity,
 			bool visible,
 			int x,
-			int y
+			int y,
+			std::vector<int> tileIds
 		);
 
 		const int& GetId() const;
@@ -42,9 +45,10 @@ namespace TiledParser {
 		const int& GetWidth() const;
 		const int& GetHeight() const;
 		const float& GetOpacity() const;
-		const bool IsVisible() const;
+		const bool& IsVisible() const;
 		const int& GetX() const;
 		const int& GetY() const;
+		const std::vector<int> GetTileIds() const;
 	};
 
 }
