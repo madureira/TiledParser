@@ -14,6 +14,10 @@ namespace TiledParser {
 		std::string m_Type;
 		int m_Width;
 		int m_Height;
+		float m_Opacity;
+		bool m_Visible;
+		int m_X;
+		int m_Y;
 
 	public:
 		Layer(
@@ -23,7 +27,11 @@ namespace TiledParser {
 			std::string encoding,
 			std::string type,
 			int width,
-			int height
+			int height,
+			float opacity,
+			bool visible,
+			int x,
+			int y
 		);
 
 		const int& GetId() const;
@@ -33,6 +41,10 @@ namespace TiledParser {
 		const std::string& GetType() const;
 		const int& GetWidth() const;
 		const int& GetHeight() const;
+		const float& GetOpacity() const;
+		const bool IsVisible() const;
+		const int& GetX() const;
+		const int& GetY() const;
 	};
 
 }

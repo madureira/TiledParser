@@ -10,7 +10,11 @@ namespace TiledParser {
 		std::string encoding,
 		std::string type,
 		int width,
-		int height
+		int height,
+		float opacity,
+		bool visible,
+		int x,
+		int y
 	)
 		: m_Id(id)
 		, m_Name(name)
@@ -19,6 +23,10 @@ namespace TiledParser {
 		, m_Type(type)
 		, m_Width(width)
 		, m_Height(height)
+		, m_Opacity(opacity)
+		, m_Visible(visible)
+		, m_X(x)
+		, m_Y(y)
 	{
 	}
 
@@ -55,6 +63,26 @@ namespace TiledParser {
 	const int& Layer::GetHeight() const
 	{
 		return this->m_Height;
+	}
+
+	const float& Layer::GetOpacity() const
+	{
+		return this->m_Opacity;
+	}
+
+	const bool Layer::IsVisible() const
+	{
+		return this->m_Visible;
+	}
+
+	const int& Layer::GetX() const
+	{
+		return this->m_X;
+	}
+
+	const int& Layer::GetY() const
+	{
+		return this->m_Y;
 	}
 
 }

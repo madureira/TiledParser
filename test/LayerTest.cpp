@@ -60,4 +60,32 @@ namespace {
 		EXPECT_EQ(firstLayer.GetHeight(), 4);
 	}
 
+	TEST(LayerTest, Opacity)
+	{
+		Layer firstLayer = map.GetLayers().at(0);
+
+		EXPECT_FLOAT_EQ(firstLayer.GetOpacity(), 1);
+	}
+
+	TEST(LayerTest, Visible)
+	{
+		Layer firstLayer = map.GetLayers().at(0);
+
+		EXPECT_TRUE(firstLayer.IsVisible());
+	}
+
+	TEST(LayerTest, X)
+	{
+		Layer firstLayer = map.GetLayers().at(0);
+
+		EXPECT_EQ(firstLayer.GetX(), 0);
+	}
+
+	TEST(LayerTest, Y)
+	{
+		Layer firstLayer = map.GetLayers().at(0);
+
+		EXPECT_EQ(firstLayer.GetY(), 0);
+	}
+
 }

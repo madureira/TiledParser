@@ -126,7 +126,11 @@ namespace TiledParser {
 				jsonLayer["encoding"].get<std::string>(),
 				jsonLayer["type"].get<std::string>(),
 				jsonLayer["width"].get<int>(),
-				jsonLayer["height"].get<int>()
+				jsonLayer["height"].get<int>(),
+				jsonLayer["opacity"].get<float>(),
+				jsonLayer["visible"].get<bool>(),
+				jsonLayer["x"].get<int>(),
+				jsonLayer["y"].get<int>()
 			);
 
 			this->m_Layers.push_back(layer);
