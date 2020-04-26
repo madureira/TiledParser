@@ -22,7 +22,6 @@ namespace TiledParser {
 			if (!this->Parse(jsonStr))
 			{
 				std::cout << "ERROR: Failed to parse file " << filePath << std::endl;
-				perror(filePath.c_str());
 			}
 		}
 		else {
@@ -128,7 +127,7 @@ namespace TiledParser {
 
 			if (!errorMessage.empty())
 			{
-				std::cout << "ERROR: Failed to decode base64 attribute data" << std::endl;
+				std::cout << "ERROR: Failed to decode base64 attribute 'layers > data'" << std::endl;
 				return false;
 			}
 
