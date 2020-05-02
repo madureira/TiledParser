@@ -21,6 +21,15 @@
     <ClCompile Include="TiledParser\Layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TiledParser\TileSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledParser\TileLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TiledParser\ObjectGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TiledParser\TileMap.h">
@@ -30,6 +39,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TiledParser\Base64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledParser\TileSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledParser\TileLayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TiledParser\ObjectGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

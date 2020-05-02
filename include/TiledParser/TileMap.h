@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 #include "Layer.h"
+#include "TileLayer.h"
+#include "TileSet.h"
 
 namespace TiledParser {
 
@@ -23,7 +25,8 @@ namespace TiledParser {
 		int m_TileWidth;
 		int m_TileHeight;
 		std::string m_BackgroundColor;
-		std::vector<Layer> m_Layers;
+		std::vector<TileLayer> m_TileLayers;
+		std::vector<TileSet> m_TileSets;
 
 	public:
 		TileMap(std::string filePath);
@@ -41,9 +44,11 @@ namespace TiledParser {
 		const int& GetTileWidth() const;
 		const int& GetTileHeight() const;
 		const std::string& GetBackgroundColor() const;
-		const std::vector<Layer> GetLayers() const;
+		const std::vector<TileLayer> GetTileLayers() const;
+		const std::vector<TileSet> GetTileSets() const;
 
 	private:
+		const std::string ReadJSONFile(std::string& filePath);
 		const bool Parse(std::string& jsonStr);
 	};
 

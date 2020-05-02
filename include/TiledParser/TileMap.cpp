@@ -1,5 +1,6 @@
 #include "TileMap.h"
 #include "Base64.h"
+#include "TileLayer.h"
 #include <fstream>
 #include <filesystem>
 #include <nlohmann/json.hpp>
@@ -14,19 +15,14 @@ namespace TiledParser {
 	TileMap::TileMap(std::string filePath)
 		: m_FilePath(filePath)
 	{
-		std::ifstream file(filePath);
+		std::string jsonStr = this->ReadJSONFile(filePath);
 
-		if (file.is_open()) {
-			std::string jsonStr((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-			file.close();
+		if (!jsonStr.empty())
+		{
 			if (!this->Parse(jsonStr))
 			{
 				std::cout << "ERROR: Failed to parse file " << filePath << std::endl;
 			}
-		}
-		else {
-			std::cout << "ERROR: Failed to read file " << filePath << std::endl;
-			perror(filePath.c_str());
 		}
 	}
 
@@ -95,9 +91,31 @@ namespace TiledParser {
 		return this->m_BackgroundColor;
 	}
 
-	const std::vector<Layer> TileMap::GetLayers() const
+	const std::vector<TileLayer> TileMap::GetTileLayers() const
 	{
-		return this->m_Layers;
+		return this->m_TileLayers;
+	}
+
+	const std::vector<TileSet> TileMap::GetTileSets() const
+	{
+		return this->m_TileSets;
+	}
+
+	const std::string TileMap::ReadJSONFile(std::string& filePath)
+	{
+		std::ifstream file(filePath);
+
+		if (file.is_open()) {
+			std::string jsonStr((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+			file.close();
+			return jsonStr;
+		}
+		else {
+			std::cout << "ERROR: Failed to read file " << filePath << std::endl;
+			perror(filePath.c_str());
+		}
+
+		return "";
 	}
 
 	const bool TileMap::Parse(std::string& jsonStr)
@@ -120,46 +138,88 @@ namespace TiledParser {
 
 		for (const auto& jsonLayer : json["layers"])
 		{
-			std::string data = jsonLayer["data"].get<std::string>();
-			std::string decodedData;
-
-			std::string errorMessage = Base64::Decode(data, decodedData);
-
-			if (!errorMessage.empty())
+			if (jsonLayer["type"] == "tilelayer")
 			{
-				std::cout << "ERROR: Failed to decode base64 attribute 'layers > data'" << std::endl;
-				return false;
-			}
+				std::string data = jsonLayer["data"].get<std::string>();
+				std::string decodedData;
 
-			std::vector<int> tileIds;
-			int dataSize = decodedData.size();
-			int tileIndex = 0;
+				std::string errorMessage = Base64::Decode(data, decodedData);
 
-			while (tileIndex < dataSize)
-			{
-				if (decodedData[tileIndex])
+				if (!errorMessage.empty())
 				{
-					tileIds.push_back((int32_t)decodedData[tileIndex]);
+					std::cout << "ERROR: Failed to decode base64 attribute 'layers > data'" << std::endl;
+					return false;
 				}
-				tileIndex += 4;
-			}
 
-			Layer layer(
-				jsonLayer["id"].get<int>(),
-				jsonLayer["name"].get<std::string>(),
-				jsonLayer["compression"].get<std::string>(),
-				jsonLayer["encoding"].get<std::string>(),
-				jsonLayer["type"].get<std::string>(),
-				jsonLayer["width"].get<int>(),
-				jsonLayer["height"].get<int>(),
-				jsonLayer["opacity"].get<float>(),
-				jsonLayer["visible"].get<bool>(),
-				jsonLayer["x"].get<int>(),
-				jsonLayer["y"].get<int>(),
-				tileIds
+				std::vector<int> tileIds;
+				int dataSize = decodedData.size();
+				int tileIndex = 0;
+
+				while (tileIndex < dataSize)
+				{
+					if (decodedData[tileIndex])
+					{
+						tileIds.push_back((int32_t)decodedData[tileIndex]);
+					}
+					tileIndex += 4;
+				}
+
+				TileLayer tileLayer(
+					jsonLayer["id"].get<int>(),
+					jsonLayer["name"].get<std::string>(),
+					jsonLayer["compression"].get<std::string>(),
+					jsonLayer["encoding"].get<std::string>(),
+					jsonLayer["type"].get<std::string>(),
+					jsonLayer["width"].get<int>(),
+					jsonLayer["height"].get<int>(),
+					jsonLayer["opacity"].get<float>(),
+					jsonLayer["visible"].get<bool>(),
+					jsonLayer["x"].get<int>(),
+					jsonLayer["y"].get<int>(),
+					tileIds
+				);
+
+				this->m_TileLayers.push_back(tileLayer);
+			}
+			else if (jsonLayer["type"] == "objectgroup")
+			{
+
+			}
+		}
+
+		fs::path filePath(this->m_FilePath);
+		std::string basePath = filePath.parent_path().string() + "/";
+
+		for (const auto& jsonTileSet : json["tilesets"])
+		{
+			std::string source = basePath + jsonTileSet["source"].get<std::string>();
+
+			std::string tileSetString = this->ReadJSONFile(source);
+
+			if (tileSetString.empty()) continue;
+
+			auto tileSetJsonObject = JSON::parse(tileSetString);
+
+			TileSet tileSet(
+				jsonTileSet["firstgid"].get<int>(),
+				jsonTileSet["source"].get<std::string>(),
+				tileSetJsonObject["tiledversion"].get<std::string>(),
+				tileSetJsonObject["version"].get<float>(),
+				tileSetJsonObject["type"].get<std::string>(),
+				tileSetJsonObject["name"].get<std::string>(),
+				tileSetJsonObject["image"].get<std::string>(),
+				tileSetJsonObject["imagewidth"].get<int>(),
+				tileSetJsonObject["imageheight"].get<int>(),
+				tileSetJsonObject["tilewidth"].get<int>(),
+				tileSetJsonObject["tileheight"].get<int>(),
+				tileSetJsonObject["tilecount"].get<int>(),
+				tileSetJsonObject["columns"].get<int>(),
+				tileSetJsonObject["margin"].get<int>(),
+				tileSetJsonObject["spacing"].get<int>(),
+				tileSetJsonObject["transparentcolor"].get<std::string>()
 			);
 
-			this->m_Layers.push_back(layer);
+			this->m_TileSets.push_back(tileSet);
 		}
 
 		return true;

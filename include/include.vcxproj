@@ -163,12 +163,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="TiledParser\Layer.cpp" />
+    <ClCompile Include="TiledParser\ObjectGroup.cpp" />
+    <ClCompile Include="TiledParser\TileLayer.cpp" />
     <ClCompile Include="TiledParser\TileMap.cpp" />
+    <ClCompile Include="TiledParser\TileSet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TiledParser\Base64.h" />
     <ClInclude Include="TiledParser\Layer.h" />
+    <ClInclude Include="TiledParser\ObjectGroup.h" />
+    <ClInclude Include="TiledParser\TileLayer.h" />
     <ClInclude Include="TiledParser\TileMap.h" />
+    <ClInclude Include="TiledParser\TileSet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base64Test.cpp" />
-    <ClCompile Include="LayerTest.cpp" />
+    <ClCompile Include="TileLayerTest.cpp" />
     <ClCompile Include="TileMapTest.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -61,15 +61,21 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TileSetTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\empty_map.json" />
+    <None Include="Resources\map_with_tileset.json" />
+    <None Include="Resources\terrain.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\include\include.vcxproj">
       <Project>{416d9709-5404-46f6-954e-6bdc7fa93465}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\tileset.png" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

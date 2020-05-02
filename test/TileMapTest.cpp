@@ -72,7 +72,12 @@ namespace {
 
 	TEST(TileMapTest, Layers)
 	{
-		EXPECT_EQ(map.GetLayers().size(), 1);
+		EXPECT_EQ(map.GetTileLayers().size(), 1);
+	}
+
+	TEST(TileMapTest, TileSets)
+	{
+		EXPECT_EQ(map.GetTileSets().size(), 0);
 	}
 
 }

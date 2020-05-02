@@ -6,29 +6,19 @@ namespace TiledParser {
 	Layer::Layer(
 		int id,
 		std::string name,
-		std::string compression,
-		std::string encoding,
 		std::string type,
-		int width,
-		int height,
 		float opacity,
 		bool visible,
 		int x,
-		int y,
-		std::vector<int> tileIds
+		int y
 	)
 		: m_Id(id)
 		, m_Name(name)
-		, m_Compression(compression)
-		, m_Encoding(encoding)
 		, m_Type(type)
-		, m_Width(width)
-		, m_Height(height)
 		, m_Opacity(opacity)
 		, m_Visible(visible)
 		, m_X(x)
 		, m_Y(y)
-		, m_TileIds(tileIds)
 	{
 	}
 
@@ -42,29 +32,9 @@ namespace TiledParser {
 		return this->m_Name;
 	}
 
-	const std::string& Layer::GetCompression() const
-	{
-		return this->m_Compression;
-	}
-
-	const std::string& Layer::GetEncoding() const
-	{
-		return this->m_Encoding;
-	}
-
 	const std::string& Layer::GetType() const
 	{
 		return this->m_Type;
-	}
-
-	const int& Layer::GetWidth() const
-	{
-		return this->m_Width;
-	}
-
-	const int& Layer::GetHeight() const
-	{
-		return this->m_Height;
 	}
 
 	const float& Layer::GetOpacity() const
@@ -85,11 +55,6 @@ namespace TiledParser {
 	const int& Layer::GetY() const
 	{
 		return this->m_Y;
-	}
-
-	const std::vector<int> Layer::GetTileIds() const
-	{
-		return this->m_TileIds;
 	}
 
 }
