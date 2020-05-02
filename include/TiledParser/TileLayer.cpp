@@ -53,7 +53,7 @@ namespace TiledParser {
 		return this->m_Height;
 	}
 
-	const std::vector<int> TileLayer::GetTileIds() const
+	const std::vector<int>& TileLayer::GetTileIds() const
 	{
 		return this->m_TileIds;
 	}

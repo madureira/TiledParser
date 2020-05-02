@@ -1,8 +1,15 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace TiledParser {
+
+	struct Point
+	{
+		float x;
+		float y;
+	};
 
 	class Object final
 	{
@@ -16,6 +23,7 @@ namespace TiledParser {
 		float m_Height;
 		float m_X;
 		float m_Y;
+		std::vector<Point> m_Polygon;
 
 	public:
 		Object(
@@ -27,7 +35,8 @@ namespace TiledParser {
 			float width,
 			float height,
 			float x,
-			float y
+			float y,
+			std::vector<Point> polygon
 		);
 
 		const int& GetId() const;
@@ -39,6 +48,7 @@ namespace TiledParser {
 		const float& GetHeight() const;
 		const float& GetX() const;
 		const float& GetY() const;
+		const std::vector<Point>& GetPolygon() const;
 	};
 
 }

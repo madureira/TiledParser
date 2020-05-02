@@ -46,9 +46,9 @@ namespace TiledParser {
 		const int& GetTileWidth() const;
 		const int& GetTileHeight() const;
 		const std::string& GetBackgroundColor() const;
-		const std::vector<TileSet> GetTileSets() const;
-		const std::vector<TileLayer> GetTileLayers() const;
-		const std::vector<ObjectGroup> GetObjectGroups() const;
+		const std::vector<TileSet>& GetTileSets() const;
+		const std::vector<TileLayer>& GetTileLayers() const;
+		const std::vector<ObjectGroup>& GetObjectGroups() const;
 
 	private:
 		const std::string ReadJSONFile(std::string& filePath);

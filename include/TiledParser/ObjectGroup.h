@@ -27,7 +27,7 @@ namespace TiledParser {
 		);
 
 		const std::string& GetDrawOrder() const;
-		const std::vector<Object> GetObjects() const;
+		const std::vector<Object>& GetObjects() const;
 	};
 
 }

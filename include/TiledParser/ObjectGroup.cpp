@@ -32,7 +32,7 @@ namespace TiledParser {
 		return this->m_DrawOrder;
 	}
 
-	const std::vector<Object> ObjectGroup::GetObjects() const
+	const std::vector<Object>& ObjectGroup::GetObjects() const
 	{
 		return this->m_Objects;
 	}

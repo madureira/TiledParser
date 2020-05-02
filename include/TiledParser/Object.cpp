@@ -11,7 +11,8 @@ namespace TiledParser {
 		float width,
 		float height,
 		float x,
-		float y
+		float y,
+		std::vector<Point> polygon
 	)
 		: m_Id(id)
 		, m_Name(name)
@@ -22,6 +23,7 @@ namespace TiledParser {
 		, m_Height(height)
 		, m_X(x)
 		, m_Y(y)
+		, m_Polygon(polygon)
 	{
 	}
 
@@ -68,6 +70,11 @@ namespace TiledParser {
 	const float& Object::GetY() const
 	{
 		return this->m_Y;
+	}
+
+	const std::vector<Point>& Object::GetPolygon() const
+	{
+		return this->m_Polygon;
 	}
 
 }

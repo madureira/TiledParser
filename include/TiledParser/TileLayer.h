@@ -35,7 +35,7 @@ namespace TiledParser {
 		const std::string& GetEncoding() const;
 		const int& GetWidth() const;
 		const int& GetHeight() const;
-		const std::vector<int> GetTileIds() const;
+		const std::vector<int>& GetTileIds() const;
 	};
 
 }

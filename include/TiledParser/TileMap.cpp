@@ -91,17 +91,17 @@ namespace TiledParser {
 		return this->m_BackgroundColor;
 	}
 
-	const std::vector<TileSet> TileMap::GetTileSets() const
+	const std::vector<TileSet>& TileMap::GetTileSets() const
 	{
 		return this->m_TileSets;
 	}
 
-	const std::vector<TileLayer> TileMap::GetTileLayers() const
+	const std::vector<TileLayer>& TileMap::GetTileLayers() const
 	{
 		return this->m_TileLayers;
 	}
 
-	const std::vector<ObjectGroup> TileMap::GetObjectGroups() const
+	const std::vector<ObjectGroup>& TileMap::GetObjectGroups() const
 	{
 		return this->m_ObjectGroups;
 	}
@@ -192,16 +192,38 @@ namespace TiledParser {
 
 				for (const auto& jsonObject : jsonLayer["objects"])
 				{
+					std::string type("rectangle");
+
+					std::vector<Point> polygon;
+
+					if (jsonObject.contains("polygon"))
+					{
+						for (const auto& jsonPoint : jsonObject["polygon"])
+						{
+							Point point;
+							point.x = jsonPoint["x"].get<float>();
+							point.y = jsonPoint["y"].get<float>();
+
+							polygon.push_back(point);
+						}
+
+						if (!polygon.empty())
+						{
+							type = "polygon";
+						}
+					}
+
 					Object object(
 						jsonObject["id"].get<int>(),
 						jsonObject["name"].get<std::string>(),
-						jsonObject["type"].get<std::string>(),
+						type,
 						jsonObject["visible"].get<bool>(),
 						jsonObject["rotation"].get<int>(),
 						jsonObject["width"].get<float>(),
 						jsonObject["height"].get<float>(),
 						jsonObject["x"].get<float>(),
-						jsonObject["y"].get<float>()
+						jsonObject["y"].get<float>(),
+						polygon
 					);
 
 					objects.push_back(object);
