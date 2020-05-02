@@ -23,7 +23,7 @@ namespace {
 	{
 		ObjectGroup objectGroup = map.GetObjectGroups().at(0);
 
-		EXPECT_EQ(objectGroup.GetName(), "Collisions");
+		EXPECT_EQ(objectGroup.GetName(), "SomeObjects");
 	}
 
 	TEST(ObjectGroupTest, Type)
@@ -72,7 +72,7 @@ namespace {
 	{
 		ObjectGroup objectGroup = map.GetObjectGroups().at(0);
 
-		EXPECT_EQ(objectGroup.GetObjects().size(), 2);
+		EXPECT_EQ(objectGroup.GetObjects().size(), 4);
 	}
 
 }

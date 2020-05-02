@@ -213,6 +213,16 @@ namespace TiledParser {
 						}
 					}
 
+					if (jsonObject.contains("point") && jsonObject["point"].get<bool>())
+					{
+						type = "point";
+					}
+
+					if (jsonObject.contains("ellipse") && jsonObject["ellipse"].get<bool>())
+					{
+						type = "ellipse";
+					}
+
 					Object object(
 						jsonObject["id"].get<int>(),
 						jsonObject["name"].get<std::string>(),

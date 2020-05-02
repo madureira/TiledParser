@@ -77,12 +77,26 @@ namespace {
 		EXPECT_FLOAT_EQ(object.GetY(), 53.5f);
 	}
 
+	TEST(ObjectTest, Rectangle)
+	{
+		ObjectGroup objectGroup = map.GetObjectGroups().at(0);
+		Object object = objectGroup.GetObjects().at(0);
+
+		EXPECT_TRUE(object.IsRectangle());
+		EXPECT_EQ(object.GetType(), "rectangle");
+		EXPECT_FLOAT_EQ(object.GetWidth(), 125.f);
+		EXPECT_FLOAT_EQ(object.GetHeight(), 129.5f);
+		EXPECT_FLOAT_EQ(object.GetX(), 61.5f);
+		EXPECT_FLOAT_EQ(object.GetY(), 53.5f);
+	}
+
 	TEST(ObjectTest, Polygon)
 	{
 		ObjectGroup objectGroup = map.GetObjectGroups().at(0);
 		Object object = objectGroup.GetObjects().at(1);
 		std::vector<Point> points = object.GetPolygon();
 
+		EXPECT_TRUE(object.IsPolygon());
 		EXPECT_EQ(object.GetType(), "polygon");
 		EXPECT_EQ(points.size(), 5);
 		EXPECT_FLOAT_EQ(points.at(0).x, 0.f);
@@ -95,5 +109,29 @@ namespace {
 		EXPECT_FLOAT_EQ(points.at(3).y, 29.f);
 		EXPECT_FLOAT_EQ(points.at(4).x, -2.66666666666667f);
 		EXPECT_FLOAT_EQ(points.at(4).y, 30.f);
+	}
+
+	TEST(ObjectTest, Point)
+	{
+		ObjectGroup objectGroup = map.GetObjectGroups().at(0);
+		Object object = objectGroup.GetObjects().at(2);
+
+		EXPECT_TRUE(object.IsPoint());
+		EXPECT_EQ(object.GetType(), "point");
+		EXPECT_FLOAT_EQ(object.GetX(), 213.333333333333f);
+		EXPECT_FLOAT_EQ(object.GetY(), 50.f);
+	}
+
+	TEST(ObjectTest, Ellipse)
+	{
+		ObjectGroup objectGroup = map.GetObjectGroups().at(0);
+		Object object = objectGroup.GetObjects().at(3);
+
+		EXPECT_TRUE(object.IsEllipse());
+		EXPECT_EQ(object.GetType(), "ellipse");
+		EXPECT_FLOAT_EQ(object.GetWidth(), 36.f);
+		EXPECT_FLOAT_EQ(object.GetHeight(), 29.f);
+		EXPECT_FLOAT_EQ(object.GetX(), 19.3333333333333f);
+		EXPECT_FLOAT_EQ(object.GetY(), 192.333333333333f);
 	}
 }

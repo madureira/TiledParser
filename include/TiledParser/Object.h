@@ -49,6 +49,26 @@ namespace TiledParser {
 		const float& GetX() const;
 		const float& GetY() const;
 		const std::vector<Point>& GetPolygon() const;
+
+		inline const bool IsRectangle() const
+		{
+			return m_Type == "rectangle";
+		}
+
+		inline const bool IsPolygon() const
+		{
+			return m_Type == "polygon";
+		}
+
+		inline const bool IsPoint() const
+		{
+			return m_Type == "point";
+		}
+
+		inline const bool IsEllipse() const
+		{
+			return m_Type == "ellipse";
+		}
 	};
 
 }

@@ -27,7 +27,7 @@
         {
          "draworder":"topdown",
          "id":2,
-         "name":"Collisions",
+         "name":"SomeObjects",
          "objects":[
                 {
                  "height":129.5,
@@ -71,6 +71,30 @@
                  "width":0,
                  "x":13.3333333333333,
                  "y":16.6666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":3,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":213.333333333333,
+                 "y":50
+                }, 
+                {
+                 "ellipse":true,
+                 "height":29,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":36,
+                 "x":19.3333333333333,
+                 "y":192.333333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -79,7 +103,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":3,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.3.4",
