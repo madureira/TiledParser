@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "../include/TiledParser/TileMap.h"
 #include "../include/TiledParser/TileLayer.h"
-#include "../include/TiledParser/Layer.h"
 #include <string>
 #include <vector>
 

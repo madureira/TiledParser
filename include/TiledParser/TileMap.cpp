@@ -1,6 +1,6 @@
 #include "TileMap.h"
 #include "Base64.h"
-#include "TileLayer.h"
+#include "Object.h"
 #include <fstream>
 #include <filesystem>
 #include <nlohmann/json.hpp>
@@ -91,14 +91,19 @@ namespace TiledParser {
 		return this->m_BackgroundColor;
 	}
 
+	const std::vector<TileSet> TileMap::GetTileSets() const
+	{
+		return this->m_TileSets;
+	}
+
 	const std::vector<TileLayer> TileMap::GetTileLayers() const
 	{
 		return this->m_TileLayers;
 	}
 
-	const std::vector<TileSet> TileMap::GetTileSets() const
+	const std::vector<ObjectGroup> TileMap::GetObjectGroups() const
 	{
-		return this->m_TileSets;
+		return this->m_ObjectGroups;
 	}
 
 	const std::string TileMap::ReadJSONFile(std::string& filePath)
@@ -183,7 +188,38 @@ namespace TiledParser {
 			}
 			else if (jsonLayer["type"] == "objectgroup")
 			{
+				std::vector<Object> objects;
 
+				for (const auto& jsonObject : jsonLayer["objects"])
+				{
+					Object object(
+						jsonObject["id"].get<int>(),
+						jsonObject["name"].get<std::string>(),
+						jsonObject["type"].get<std::string>(),
+						jsonObject["visible"].get<bool>(),
+						jsonObject["rotation"].get<int>(),
+						jsonObject["width"].get<float>(),
+						jsonObject["height"].get<float>(),
+						jsonObject["x"].get<float>(),
+						jsonObject["y"].get<float>()
+					);
+
+					objects.push_back(object);
+				}
+
+				ObjectGroup objectGroup(
+					jsonLayer["id"].get<int>(),
+					jsonLayer["name"].get<std::string>(),
+					jsonLayer["type"].get<std::string>(),
+					jsonLayer["opacity"].get<float>(),
+					jsonLayer["visible"].get<bool>(),
+					jsonLayer["x"].get<int>(),
+					jsonLayer["y"].get<int>(),
+					jsonLayer["draworder"].get<std::string>(),
+					objects
+				);
+
+				this->m_ObjectGroups.push_back(objectGroup);
 			}
 		}
 

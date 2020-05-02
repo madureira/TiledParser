@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Base64Test.cpp" />
+    <ClCompile Include="ObjectGroupTest.cpp" />
+    <ClCompile Include="ObjectTest.cpp" />
     <ClCompile Include="TileLayerTest.cpp" />
     <ClCompile Include="TileMapTest.cpp" />
     <ClCompile Include="pch.cpp">
