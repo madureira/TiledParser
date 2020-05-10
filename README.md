@@ -2,7 +2,7 @@
 
 [Tiled](https://www.mapeditor.org/) parser compatible with version **1.3.x**.
 
-![](.github/tiled-logo.png?raw=true "Tiled")
+![https://www.mapeditor.org/](.github/tiled-logo.png?raw=true "Tiled")
 
 ## Dependencies
 
