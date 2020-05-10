@@ -2,6 +2,8 @@
 
 [Tiled](https://www.mapeditor.org/) parser compatible with version **1.3.x**.
 
+![](.github/tiled-logo.png?raw=true "Tiled")
+
 ## Dependencies
 
 - [nlohmann/json](https://github.com/nlohmann/json) JSON lib for Modern C++;
