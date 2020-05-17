@@ -95,7 +95,7 @@ namespace {
 
 		std::vector<int32_t> tileIds = firstLayer.GetTileIds();
 
-		EXPECT_EQ(tileIds.size(), 0);
+		EXPECT_EQ(tileIds.size(), 16);
 	}
 
 	TEST(TileLayerTest, FilledData)
